@@ -6,8 +6,8 @@ User="VladVons"
 Name="flutter_vrelay"
 Mail="vladvons@gmail.com"
 #
-#Branch="master"
-Branch="v3"
+Branch="master"
+#Branch="v3"
 #
 Url="https://github.com/$User/$Name.git"
 
