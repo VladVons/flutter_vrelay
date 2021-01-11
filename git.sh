@@ -117,6 +117,7 @@ GitSyncToServ()
   git add -u -v
   git commit -a -m "$aComment"
   git push -u origin $Branch
+  git push -u origin $Branch --force
 }
 
 
