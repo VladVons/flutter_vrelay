@@ -53,7 +53,7 @@ GitAuth()
 {
   Log "$0->$FUNCNAME"
 
-  echo "pasword for sudo"
+  echo "enter pasword for SUDO user"
   sudo chown -R $USER .
 
   # sign with eMail
@@ -117,7 +117,6 @@ GitSyncToServ()
   git add -u -v
   git commit -a -m "$aComment"
   git push -u origin $Branch
-  git push -u origin $Branch --force
 }
 
 
