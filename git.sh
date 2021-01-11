@@ -33,7 +33,7 @@ Clean()
   echo
   echo "Statistics *.dart"
   #find . -name '*.py' -ls | awk '{total += $7} END {print total}'
-  find . -name 'lib/*.dart' | xargs wc | cat -n
+  find . -name '*.dart' | xargs wc | cat -n
   #find . -name '*.py' | wc -l
 
   #echo
