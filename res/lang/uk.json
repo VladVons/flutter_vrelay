@@ -1,4 +1,11 @@
 {
-  "first_string": "Приклад",
-  "second_string": "Ak ti tento tutoriál pomáha, daj mu like a prihlás sa na odber u Reso Codera 😉"
+  "Active": "Активно",
+  "Main": "Головна",
+  "Connection": "Зєднання",
+  "Exit": "Вихід",
+  "Name": "Імя",
+  "Host": "Хост",
+  "Port": "Порт",
+  "User": "Користувач",
+  "Password": "Пароль"
 }

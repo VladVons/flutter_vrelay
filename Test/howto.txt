@@ -1,0 +1,13 @@
+Text validation
+https://flutter.dev/docs/cookbook/forms/validation
+
+Retrieve Text Input
+https://flutter.dev/docs/cookbook/forms/retrieve-input
+https://medium.com/flutter-developer-indonesia/retrieve-value-from-text-field-to-widget-text-e12a9f162307
+https://zaiste.net/programming/flutter/howtos/howto-retrieve-text-field-values-flutter
+
+Retrieve Text Input INIT
+https://mightytechno.com/flutter-textfield/
+
+FIRST STEPS WITH FLUTTER
+https://pusher.com/tutorials/flutter-user-input

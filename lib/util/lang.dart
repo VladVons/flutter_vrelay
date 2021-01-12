@@ -14,7 +14,7 @@ class TLang {
     return Localizations.of<TLang>(context, TLang);
   }
 
-  static const LocalizationsDelegate<TLang> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<TLang> delegate = AppLocalizationsDelegate();
 
   static String getKey(BuildContext aContext, String aKey) {
     return TLang.of(aContext).translate(aKey);
@@ -41,8 +41,8 @@ class TLang {
   }
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<TLang> {
-  const _AppLocalizationsDelegate();
+class AppLocalizationsDelegate extends LocalizationsDelegate<TLang> {
+  const AppLocalizationsDelegate();
 
   @override
   bool isSupported(Locale aLocale) {
@@ -57,5 +57,5 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<TLang> {
   }
 
   @override
-  bool shouldReload(_AppLocalizationsDelegate old) => false;
+  bool shouldReload(AppLocalizationsDelegate old) => false;
 }
