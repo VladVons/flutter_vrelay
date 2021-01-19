@@ -1,4 +1,12 @@
+if error: 
+ERROR: JAVA_HOME is not set and no 'java' command could be found in your PATH
+
+flutter config --android-studio-dir=/snap/android-studio/current/android-studio/jre
+
+------------
+
 Text validation
+https://github.com/JohannesMilke/textformfield_example
 https://flutter.dev/docs/cookbook/forms/validation
 
 Retrieve Text Input
@@ -11,3 +19,10 @@ https://mightytechno.com/flutter-textfield/
 
 FIRST STEPS WITH FLUTTER
 https://pusher.com/tutorials/flutter-user-input
+
+
+
+raisedbutton
+https://androidride.com/flutter-raisedbutton-examples/
+
+
