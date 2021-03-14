@@ -15,7 +15,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
 
-  mqtt_client: ^8.0.0
+  mqtt_client: ^9.0.0 
 
   cupertino_icons: ^1.0.0
 
