@@ -7,7 +7,7 @@ import '../util/mqtt.dart';
 class PageConnection extends StatelessWidget {
   bool valuefirst = !false;
   final controlName = TextEditingController();
-  final controlHost = TextEditingController(text: 'Test1');
+  final controlHost = TextEditingController(text: 'vpn2.oster.com.ua');
   final controlPort = TextEditingController();
   final controlUser = TextEditingController();
   final controlPassword = TextEditingController();
@@ -49,12 +49,19 @@ class PageConnection extends StatelessWidget {
             //  new MaterialPageRoute(builder: (context) => new SecondScreen()),
             //);
             //controlName.text = 'Test3----';
+
+            String Msg = "OK";
             TMqtt Mqtt = TMqtt();
-            if (await Mqtt.Init(controlHost.text) == false) {
-
+            if (await Mqtt.Init(controlHost.text)) {
+              Mqtt.Disconnect();
+            } else {
+              Msg = "Error";
             }
-
-            if (Mqtt.Test()) {}
+            showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                    title: Text('MQTT test connection'),
+                    content: Text('Connection to ${controlHost.text} $Msg')));
           },
           child: Text('Sample Push!'),
         )
