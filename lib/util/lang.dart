@@ -14,7 +14,8 @@ class TLang {
     return Localizations.of<TLang>(context, TLang);
   }
 
-  static const LocalizationsDelegate<TLang> delegate = AppLocalizationsDelegate();
+  static const LocalizationsDelegate<TLang> delegate =
+      AppLocalizationsDelegate();
 
   static String getKey(BuildContext aContext, String aKey) {
     return TLang.of(aContext).translate(aKey);
@@ -22,15 +23,16 @@ class TLang {
 
   static Locale getCurrent(Locale aLocale, Iterable<Locale> aSupportedLocales) {
     for (var supportedLocale in aSupportedLocales) {
-      if (supportedLocale.languageCode == aLocale.languageCode && supportedLocale.countryCode == aLocale.countryCode) {
+      if (supportedLocale.languageCode == aLocale.languageCode &&
+          supportedLocale.countryCode == aLocale.countryCode) {
         return supportedLocale;
       }
     }
     return aSupportedLocales.first;
   }
 
-  String get assetName => 'res/lang/${locale.languageCode}.json';
- 
+  String get assetName => 'assets/lang/${locale.languageCode}.json';
+
   Future load() async {
     String jsonString = await rootBundle.loadString(assetName);
     _strings = jsonDecode(jsonString);
