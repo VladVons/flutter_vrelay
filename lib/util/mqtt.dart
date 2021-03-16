@@ -1,48 +1,61 @@
-// https://pub.dev/packages/mqtt_client/versions/5.5.1/example
+// https://github.com/shamblett/mqtt_client/blob/master/example/mqtt_server_client.dart
 
 import 'dart:async';
 import 'package:mqtt_client/mqtt_client.dart';
+import 'package:mqtt_client/mqtt_server_client.dart';
 
 class TMqtt {
-  MqttClient client;
+  MqttServerClient client;
 
-  Future<bool> Init(String aHost) async {
-    client = MqttClient('test.mosquitto.org', '');
-    //client = MqttClient(aHost, 'q1');
-    //client = MqttClient.withPort('mqtt://' + aHost, '#', 1883);
+  TMqtt(String aServer, int aPort, String aClientId) {
+    client = init(aServer, aPort, aClientId);
+  }
+
+  MqttServerClient init(String aServer, int aPort, String aClientId) {
+    MqttServerClient client = MqttServerClient(aServer, '');
+
+    client.port = aPort;
+    client.secure = false;
     client.keepAlivePeriod = 20;
     client.logging(on: true);
-    client.onDisconnected = onDisconnected;
-    client.onConnected = onConnected;
-    client.onSubscribed = onSubscribed;
+    client.onDisconnected = onDisconnect;
+    client.onConnected = onConnect;
+    client.onSubscribed = onSubscribe;
 
-    final MqttConnectMessage connMess = MqttConnectMessage()
-        .withClientIdentifier('clientIdentifier-xxx1')
-        .startClean() // Non persistent session for testing
-        .keepAliveFor(30)
-        .withWillQos(MqttQos.atMostOnce);
-    client.connectionMessage = connMess;
+    final connMessage = MqttConnectMessage()
+      //.authenticateAs('username', 'password')
+      .withClientIdentifier(aClientId)
+      .keepAliveFor(20) // Must agree with the keep alive set above or not set
+      .withWillTopic('willtopic') // If you set this you must set a will message
+      .withWillMessage('My Will message')
+      .startClean() // Non persistent session for testing
+      .withWillQos(MqttQos.atLeastOnce);
+    client.connectionMessage = connMessage;
 
+    return client;
+  }
+
+  Future<bool> connect() async {
     try {
       await client.connect();
       return (client.connectionStatus.state == MqttConnectionState.connected);
     } catch (e) {
-      print('Error: TMqtt::Init $e');
-      Disconnect();
+      print('Error: TMqtt::connect $e');
+      disconnect();
       return false;
     }
   }
 
-  Disconnect() {
+  disconnect() {
     client?.disconnect();
     client = null;
   }
 
-  void onConnected() {}
+  void onConnect() {}
 
-  void onDisconnected() {}
+  void onDisconnect() {}
 
-  void onSubscribed(String topic) {
+  void onSubscribe(String topic) {
     print(topic);
   }
 }

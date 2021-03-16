@@ -3,8 +3,9 @@
 flutter upgrade
 
 cd ..
-flutter pub outdated
 flutter packages upgrade
+flutter pub outdated
+
 
 flutter clean
-flutter run --verbose
+#flutter run --verbose

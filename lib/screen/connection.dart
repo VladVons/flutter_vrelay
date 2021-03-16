@@ -5,10 +5,10 @@ import '../util/lang.dart';
 import '../util/mqtt.dart';
 
 class PageConnection extends StatelessWidget {
-  bool valuefirst = !false;
+  bool valuefirst = false;
   final controlName = TextEditingController();
   final controlHost = TextEditingController(text: 'vpn2.oster.com.ua');
-  final controlPort = TextEditingController();
+  final controlPort = TextEditingController(text: '1883');
   final controlUser = TextEditingController();
   final controlPassword = TextEditingController();
 
@@ -20,7 +20,7 @@ class PageConnection extends StatelessWidget {
     //   super.dispose();
     // }
 
-    controlName.text = 'Test3';
+    //controlName.text = 'Test3';
 
     return Scaffold(
         body: Column(
@@ -42,29 +42,8 @@ class PageConnection extends StatelessWidget {
         buildPort(context),
         buildUser(context),
         buildPassword(context),
+        buildButton(context),
         const SizedBox(height: 32),
-        RaisedButton(
-          onPressed: () async {
-            //Navigator.push(context,
-            //  new MaterialPageRoute(builder: (context) => new SecondScreen()),
-            //);
-            //controlName.text = 'Test3----';
-
-            String Msg = "OK";
-            TMqtt Mqtt = TMqtt();
-            if (await Mqtt.Init(controlHost.text)) {
-              Mqtt.Disconnect();
-            } else {
-              Msg = "Error";
-            }
-            showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                    title: Text('MQTT test connection'),
-                    content: Text('Connection to ${controlHost.text} $Msg')));
-          },
-          child: Text('Sample Push!'),
-        )
       ],
     ));
   }
@@ -120,4 +99,31 @@ class PageConnection extends StatelessWidget {
           ),
           controller: controlPassword,
           obscureText: true));
+
+  Widget buildButton(BuildContext context) => RaisedButton(
+        onPressed: () async {
+          //Navigator.push(context,
+          //  new MaterialPageRoute(builder: (context) => new SecondScreen()),
+          //);
+          //controlName.text = 'Test3----';
+
+          String msg;
+          TMqtt mqtt =
+              TMqtt(controlHost.text, int.parse(controlPort.text), 'idxxx');
+          if (await mqtt.connect()) {
+            mqtt.disconnect();
+            msg = "OK";
+          } else {
+            valuefirst = false;
+            msg = "Error";
+          }
+          showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                  title: Text('MQTT test connection'),
+                  content: Text(
+                      'Connection to ${controlHost.text}:${controlPort.text} $msg')));
+        },
+        child: Text('Save'),
+      );
 }
