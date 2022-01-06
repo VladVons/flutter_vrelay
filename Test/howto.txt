@@ -5,6 +5,21 @@ flutter config --android-studio-dir=/snap/android-studio/current/android-studio/
 
 ------------
 
+emulator -list-avds
+emulator -avd Pixel_2_API_29
+
+avdmanager list avd
+avdmanager list targets
+avdmanager update avds
+avdmanager create avd -n myDevice -k "system-images;android-29;google_apis_playstore;x86"
+avdmanager -v delete avd -n Pixel_2_API_29
+
+------------
+docker
+https://github.com/thyrlian/AndroidSDK
+
+-----------
+
 Text validation
 https://github.com/JohannesMilke/textformfield_example
 https://flutter.dev/docs/cookbook/forms/validation
